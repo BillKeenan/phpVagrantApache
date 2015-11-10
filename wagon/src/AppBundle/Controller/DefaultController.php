@@ -13,6 +13,7 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
+        $request->getSession()->set('_locale', 'en');
         // replace this example code with whatever you need
         return $this->render('AppBundle:login:login.html.twig',[]);
     }
