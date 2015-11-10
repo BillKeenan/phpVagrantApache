@@ -20,9 +20,8 @@ sudo service mongod start
 
 sudo apt-get install -y php-pear
 
-sudo rm -rf /var/web
 sudo rm /etc/apache2/sites-enabled/*
-sudo cp /var/web/vagrant/wagon.conf /etc/apache2/sites-enabled/
+sudo cp /data/web/vagrant/wagon.conf /etc/apache2/sites-enabled/
 sudo apachectl stop
 
 sudo rm -rf /var/lock/apache2
@@ -33,15 +32,17 @@ curl -sS https://getcomposer.org/installer | php  -- --check.
 sudo mv composer.phar /usr/local/bin/composer
 
 sudo apachectl start
-cd /var/www/wagon/
+cd /data/web/wagon/
 composer update
 composer install
 
-sudo chown -R vagrant /var/www/wagon/app
+sudo chown -R vagrant /data/web/wagon/app
 
-cd /var/www/wagon
 
 php app/console cache:clear --env=prod
 php app/console cache:clear --env=dev
 
+sudo chown -R vagrant /data/web/wagon/app
 
+echo "run 'vagrant gatling-rsync-auto' on the host machine to auto-sync"
+echo "load http://localhost:9000/app_dev.php to get started"

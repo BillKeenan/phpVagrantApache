@@ -1,3 +1,4 @@
 wagon/vendor/
 vagrant/.vagrant
 wagon/app/cache/
+wagon/.idea/workspace.xml
